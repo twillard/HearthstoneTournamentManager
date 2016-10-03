@@ -19,7 +19,7 @@ namespace Util
 
         public void Log(string message)
         {
-            m_logTextBox.Text = String.Format("[{0:000}]: {1}\r\n", m_messageNum, message) + m_logTextBox.Text;
+            m_logTextBox.AppendText(String.Format("[{0:000}]: {1}\r\n", m_messageNum, message));
             ++m_messageNum;
         }
     }

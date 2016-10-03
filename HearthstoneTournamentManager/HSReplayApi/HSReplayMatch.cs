@@ -16,7 +16,7 @@ public class HSReplayMatch
         m_valid = false;
 
         m_logger = logger;
-        m_logger.Log("Looking up match " + matchId);
+
         m_matchId = matchId;
         Request();
     }
@@ -49,8 +49,7 @@ public class HSReplayMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("ERROR reading match:");
-            m_logger.Log(e.Message);
+            m_logger.Log("ERROR: " + e.Message);
             Console.WriteLine(e.Message);
         }
     }
@@ -84,8 +83,7 @@ public class HSReplayMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("HTTP ERROR fetching match:");
-            m_logger.Log(e.Message);
+            m_logger.Log("HTTP ERROR: " + e.Message);
             Console.WriteLine(e.Message);
             return null;
         }
@@ -93,7 +91,6 @@ public class HSReplayMatch
 
     private void ProcessResponse(HSReplaySchema.Response response)
     {
-        m_logger.Log("Processing match");
         if (m_matchInfo.Won)
         {
             m_winner = m_matchInfo.GlobalGame.Players[0].Name;

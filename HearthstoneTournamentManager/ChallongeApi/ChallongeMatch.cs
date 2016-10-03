@@ -51,7 +51,6 @@ public class ChallongeMatch
     {
         try
         {
-            m_logger.Log(String.Format("Updating match {0}", m_match.Id));
             ChallongeSchema.MatchWrapper match = MakeRequest(uri);
             if (match != null)
             {
@@ -60,8 +59,7 @@ public class ChallongeMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("ERROR updating match:");
-            m_logger.Log(e.Message);
+            m_logger.Log("ERROR: " + e.Message);
             Console.WriteLine(e.Message);
         }
     }
@@ -115,8 +113,7 @@ public class ChallongeMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("HTTP ERROR updating challonge match:");
-            m_logger.Log(e.Message);
+            m_logger.Log("HTTP ERROR: " + e.Message);
             Console.WriteLine(e.Message);
             return null;
         }
@@ -124,6 +121,9 @@ public class ChallongeMatch
 
     private void ProcessResponse(ChallongeSchema.MatchWrapper response)
     {
-        m_logger.Log("Match response state: " + response.Match.State);
+        if (response.Match.State != "complete")
+        {
+            throw new Exception(String.Format("Match winner not updated; status=[{0}]. Check tournament webpage.", response.Match.State));
+        }
     }
 }

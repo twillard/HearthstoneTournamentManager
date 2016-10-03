@@ -51,12 +51,6 @@ public class ChallongeTournament
         m_logger.Log("Searching for challonge match between " + player1 + " and " + player2);
         foreach (ChallongeSchema.MatchWrapper match in m_tournamentInfo.Tournament.Matches)
         {
-            m_logger.Log(
-                String.Format("Match {0}. P1 {1}, P2 {2}",
-                match.Match.Id,
-                match.Match.Player1Id,
-                match.Match.Player2Id));
-
             Tuple<ChallongeSchema.ParticipantInfo, ChallongeSchema.ParticipantInfo> participants =
                 CheckMatch(match.Match, player1, player2);
 
@@ -126,8 +120,7 @@ public class ChallongeTournament
         }
         catch (Exception e)
         {
-            m_logger.Log("ERROR reading match:");
-            m_logger.Log(e.Message);
+            m_logger.Log("ERROR: " + e.Message);
             Console.WriteLine(e.Message);
         }
     }
@@ -164,8 +157,7 @@ public class ChallongeTournament
         }
         catch (Exception e)
         {
-            m_logger.Log("HTTP ERROR fetching tournament:");
-            m_logger.Log(e.Message);
+            m_logger.Log("HTTP ERROR: " + e.Message);
             Console.WriteLine(e.Message);
             return null;
         }
@@ -173,7 +165,10 @@ public class ChallongeTournament
 
     private void ProcessResponse(ChallongeSchema.Response response)
     {
-        m_logger.Log("Processing tournament " + m_tournamentInfo.Tournament.Name);
+        if (m_tournamentInfo.Tournament.State != "underway")
+        {
+            throw new Exception(String.Format("Tournament [{0}] is not in progress!  Status: [{1}]", m_tournamentInfo.Tournament.Name, m_tournamentInfo.Tournament.State));
+        }
 
         foreach (ChallongeSchema.ParticipantWrapper participant in m_tournamentInfo.Tournament.Participants)
         {
