@@ -92,5 +92,13 @@ namespace HSTournament
 
             m_tournament = tournament;
         }
+
+        private void hsTournamentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.ChallongeUsername = this.challongeUsernameTextbox.Text;
+            Properties.Settings.Default.ChallongeAPIKey = this.challongeApiKeyTextbox.Text;
+            Properties.Settings.Default.ChallongeTournamentId = this.challongeTournamentIdTextbox.Text;
+            Properties.Settings.Default.Save();
+        }
     }
 }

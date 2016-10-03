@@ -65,11 +65,12 @@
             // 
             // challongeUsernameTextbox
             // 
+            this.challongeUsernameTextbox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::HSTournament.Properties.Settings.Default, "ChallongeUsername", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.challongeUsernameTextbox.Location = new System.Drawing.Point(9, 32);
             this.challongeUsernameTextbox.Name = "challongeUsernameTextbox";
             this.challongeUsernameTextbox.Size = new System.Drawing.Size(311, 20);
             this.challongeUsernameTextbox.TabIndex = 1;
-            this.challongeUsernameTextbox.Text = "twillard";
+            this.challongeUsernameTextbox.Text = global::HSTournament.Properties.Settings.Default.ChallongeUsername;
             // 
             // challongeUsernameLabel
             // 
@@ -91,11 +92,12 @@
             // 
             // challongeApiKeyTextbox
             // 
+            this.challongeApiKeyTextbox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::HSTournament.Properties.Settings.Default, "ChallongeAPIKey", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.challongeApiKeyTextbox.Location = new System.Drawing.Point(9, 78);
             this.challongeApiKeyTextbox.Name = "challongeApiKeyTextbox";
             this.challongeApiKeyTextbox.Size = new System.Drawing.Size(311, 20);
             this.challongeApiKeyTextbox.TabIndex = 2;
-            this.challongeApiKeyTextbox.Text = "GhX4nXyeYnAl5HzGmU1i7g027WP2yKv3FgOVc8cq";
+            this.challongeApiKeyTextbox.Text = global::HSTournament.Properties.Settings.Default.ChallongeAPIKey;
             this.challongeApiKeyTextbox.UseSystemPasswordChar = true;
             // 
             // challongeTournamentIdLabel
@@ -109,11 +111,12 @@
             // 
             // challongeTournamentIdTextbox
             // 
+            this.challongeTournamentIdTextbox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::HSTournament.Properties.Settings.Default, "ChallongeTournamentId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.challongeTournamentIdTextbox.Location = new System.Drawing.Point(9, 123);
             this.challongeTournamentIdTextbox.Name = "challongeTournamentIdTextbox";
             this.challongeTournamentIdTextbox.Size = new System.Drawing.Size(311, 20);
             this.challongeTournamentIdTextbox.TabIndex = 3;
-            this.challongeTournamentIdTextbox.Text = "twillard_test_tourney";
+            this.challongeTournamentIdTextbox.Text = global::HSTournament.Properties.Settings.Default.ChallongeTournamentId;
             // 
             // hsReplayIdLabel
             // 
@@ -268,6 +271,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "hsTournamentForm";
             this.Text = "Hearthstone Tournament Recorder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.hsTournamentForm_FormClosing);
             this.hsReplayGroupBox.ResumeLayout(false);
             this.hsReplayGroupBox.PerformLayout();
             this.challongeGroupBox.ResumeLayout(false);
