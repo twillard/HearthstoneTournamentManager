@@ -37,7 +37,6 @@
             this.challongeTournamentIdTextbox = new System.Windows.Forms.TextBox();
             this.hsReplayIdLabel = new System.Windows.Forms.Label();
             this.hsReplayIdTextbox = new System.Windows.Forms.TextBox();
-            this.logTextBox = new System.Windows.Forms.TextBox();
             this.logLabel = new System.Windows.Forms.Label();
             this.hsReplayGroupBox = new System.Windows.Forms.GroupBox();
             this.challongeGroupBox = new System.Windows.Forms.GroupBox();
@@ -45,6 +44,7 @@
             this.activeTournamentTitleLabel = new System.Windows.Forms.Label();
             this.fetchTournamentButton = new System.Windows.Forms.Button();
             this.debugCheckBox = new System.Windows.Forms.CheckBox();
+            this.logTextBox = new System.Windows.Forms.RichTextBox();
             this.hsReplayGroupBox.SuspendLayout();
             this.challongeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -52,11 +52,11 @@
             // processMatchButton
             // 
             this.processMatchButton.Enabled = false;
-            this.processMatchButton.Location = new System.Drawing.Point(208, 73);
+            this.processMatchButton.Location = new System.Drawing.Point(272, 32);
             this.processMatchButton.Name = "processMatchButton";
-            this.processMatchButton.Size = new System.Drawing.Size(133, 61);
+            this.processMatchButton.Size = new System.Drawing.Size(69, 102);
             this.processMatchButton.TabIndex = 6;
-            this.processMatchButton.Text = "Process Match";
+            this.processMatchButton.Text = "Process Matches";
             this.processMatchButton.UseVisualStyleBackColor = true;
             this.processMatchButton.Click += new System.EventHandler(this.processMatchButton_Click);
             // 
@@ -120,30 +120,19 @@
             this.hsReplayIdLabel.AutoSize = true;
             this.hsReplayIdLabel.Location = new System.Drawing.Point(6, 16);
             this.hsReplayIdLabel.Name = "hsReplayIdLabel";
-            this.hsReplayIdLabel.Size = new System.Drawing.Size(69, 13);
+            this.hsReplayIdLabel.Size = new System.Drawing.Size(201, 13);
             this.hsReplayIdLabel.TabIndex = 999;
-            this.hsReplayIdLabel.Text = "HSReplay ID";
+            this.hsReplayIdLabel.Text = "HSReplay ID List (whitespace-separated)";
             // 
             // hsReplayIdTextbox
             // 
             this.hsReplayIdTextbox.Enabled = false;
             this.hsReplayIdTextbox.Location = new System.Drawing.Point(6, 32);
+            this.hsReplayIdTextbox.Multiline = true;
             this.hsReplayIdTextbox.Name = "hsReplayIdTextbox";
-            this.hsReplayIdTextbox.Size = new System.Drawing.Size(311, 20);
+            this.hsReplayIdTextbox.Size = new System.Drawing.Size(260, 102);
             this.hsReplayIdTextbox.TabIndex = 5;
             this.hsReplayIdTextbox.Text = "TCtFGnVwjqNyoMfpTv2j55";
-            // 
-            // logTextBox
-            // 
-            this.logTextBox.Location = new System.Drawing.Point(376, 25);
-            this.logTextBox.Multiline = true;
-            this.logTextBox.Name = "logTextBox";
-            this.logTextBox.ReadOnly = true;
-            this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.logTextBox.Size = new System.Drawing.Size(438, 351);
-            this.logTextBox.TabIndex = 999;
-            this.logTextBox.TabStop = false;
-            this.logTextBox.WordWrap = false;
             // 
             // logLabel
             // 
@@ -224,16 +213,25 @@
             this.debugCheckBox.UseVisualStyleBackColor = true;
             this.debugCheckBox.CheckedChanged += new System.EventHandler(this.DebugCheckBox_CheckedChanged);
             // 
+            // logTextBox
+            // 
+            this.logTextBox.Location = new System.Drawing.Point(365, 25);
+            this.logTextBox.Name = "logTextBox";
+            this.logTextBox.ReadOnly = true;
+            this.logTextBox.Size = new System.Drawing.Size(449, 351);
+            this.logTextBox.TabIndex = 1001;
+            this.logTextBox.Text = "";
+            // 
             // hsTournamentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(826, 386);
+            this.ClientSize = new System.Drawing.Size(819, 384);
+            this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.challongeGroupBox);
             this.Controls.Add(this.hsReplayGroupBox);
             this.Controls.Add(this.logLabel);
-            this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.debugCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "hsTournamentForm";
@@ -259,7 +257,6 @@
         private System.Windows.Forms.TextBox challongeTournamentIdTextbox;
         private System.Windows.Forms.Label hsReplayIdLabel;
         private System.Windows.Forms.TextBox hsReplayIdTextbox;
-        private System.Windows.Forms.TextBox logTextBox;
         private System.Windows.Forms.Label logLabel;
         private System.Windows.Forms.GroupBox hsReplayGroupBox;
         private System.Windows.Forms.GroupBox challongeGroupBox;
@@ -267,6 +264,7 @@
         private System.Windows.Forms.Label activeTournamentLabel;
         private System.Windows.Forms.Label activeTournamentTitleLabel;
         private System.Windows.Forms.CheckBox debugCheckBox;
+        private System.Windows.Forms.RichTextBox logTextBox;
     }
 }
 

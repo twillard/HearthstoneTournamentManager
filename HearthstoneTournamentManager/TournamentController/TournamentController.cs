@@ -50,7 +50,13 @@ namespace HSTournament
 
         public void ProcessMatches(string matchIds)
         {
-            ProcessMatch(matchIds);
+            char[] whitespace = { ' ', '\n', '\r', '\t' };
+            string[] matchIdList = matchIds.Split(whitespace);
+
+            foreach (string matchId in matchIdList)
+            {
+                ProcessMatch(matchId);
+            }
         }
 
         private void ProcessMatch(string matchId)
