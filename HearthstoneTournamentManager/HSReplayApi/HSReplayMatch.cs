@@ -49,7 +49,7 @@ public class HSReplayMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("ERROR: " + e.Message);
+            m_logger.LogError(e.Message);
             Console.WriteLine(e.Message);
         }
     }
@@ -58,7 +58,7 @@ public class HSReplayMatch
     {
         string UrlRequest = "https://hsreplay.net/api/v1/games/" +
                              m_matchId + "/";
-        m_logger.Log(UrlRequest);
+        m_logger.LogDebug(UrlRequest);
         return (UrlRequest);
     }
 
@@ -83,7 +83,7 @@ public class HSReplayMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("HTTP ERROR: " + e.Message);
+            m_logger.LogError("HTTP failure: " + e.Message);
             Console.WriteLine(e.Message);
             return null;
         }

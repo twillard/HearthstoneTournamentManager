@@ -37,10 +37,6 @@
             this.challongeTournamentIdTextbox = new System.Windows.Forms.TextBox();
             this.hsReplayIdLabel = new System.Windows.Forms.Label();
             this.hsReplayIdTextbox = new System.Windows.Forms.TextBox();
-            this.winnerTitleLabel = new System.Windows.Forms.Label();
-            this.winnerLabel = new System.Windows.Forms.Label();
-            this.loserLabel = new System.Windows.Forms.Label();
-            this.loserTitleLabel = new System.Windows.Forms.Label();
             this.logTextBox = new System.Windows.Forms.TextBox();
             this.logLabel = new System.Windows.Forms.Label();
             this.hsReplayGroupBox = new System.Windows.Forms.GroupBox();
@@ -48,6 +44,7 @@
             this.activeTournamentLabel = new System.Windows.Forms.Label();
             this.activeTournamentTitleLabel = new System.Windows.Forms.Label();
             this.fetchTournamentButton = new System.Windows.Forms.Button();
+            this.debugCheckBox = new System.Windows.Forms.CheckBox();
             this.hsReplayGroupBox.SuspendLayout();
             this.challongeGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -136,44 +133,6 @@
             this.hsReplayIdTextbox.TabIndex = 5;
             this.hsReplayIdTextbox.Text = "TCtFGnVwjqNyoMfpTv2j55";
             // 
-            // winnerTitleLabel
-            // 
-            this.winnerTitleLabel.AutoSize = true;
-            this.winnerTitleLabel.Location = new System.Drawing.Point(6, 82);
-            this.winnerTitleLabel.Name = "winnerTitleLabel";
-            this.winnerTitleLabel.Size = new System.Drawing.Size(44, 13);
-            this.winnerTitleLabel.TabIndex = 999;
-            this.winnerTitleLabel.Text = "Winner:";
-            // 
-            // winnerLabel
-            // 
-            this.winnerLabel.AutoSize = true;
-            this.winnerLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.winnerLabel.Location = new System.Drawing.Point(56, 82);
-            this.winnerLabel.Name = "winnerLabel";
-            this.winnerLabel.Size = new System.Drawing.Size(52, 13);
-            this.winnerLabel.TabIndex = 999;
-            this.winnerLabel.Text = "WINNER";
-            // 
-            // loserLabel
-            // 
-            this.loserLabel.AutoSize = true;
-            this.loserLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.loserLabel.Location = new System.Drawing.Point(56, 106);
-            this.loserLabel.Name = "loserLabel";
-            this.loserLabel.Size = new System.Drawing.Size(43, 13);
-            this.loserLabel.TabIndex = 999;
-            this.loserLabel.Text = "LOSER";
-            // 
-            // loserTitleLabel
-            // 
-            this.loserTitleLabel.AutoSize = true;
-            this.loserTitleLabel.Location = new System.Drawing.Point(6, 106);
-            this.loserTitleLabel.Name = "loserTitleLabel";
-            this.loserTitleLabel.Size = new System.Drawing.Size(36, 13);
-            this.loserTitleLabel.TabIndex = 999;
-            this.loserTitleLabel.Text = "Loser:";
-            // 
             // logTextBox
             // 
             this.logTextBox.Location = new System.Drawing.Point(376, 25);
@@ -181,7 +140,7 @@
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ReadOnly = true;
             this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.logTextBox.Size = new System.Drawing.Size(308, 351);
+            this.logTextBox.Size = new System.Drawing.Size(438, 351);
             this.logTextBox.TabIndex = 999;
             this.logTextBox.TabStop = false;
             this.logTextBox.WordWrap = false;
@@ -200,10 +159,6 @@
             this.hsReplayGroupBox.Controls.Add(this.hsReplayIdLabel);
             this.hsReplayGroupBox.Controls.Add(this.hsReplayIdTextbox);
             this.hsReplayGroupBox.Controls.Add(this.processMatchButton);
-            this.hsReplayGroupBox.Controls.Add(this.loserLabel);
-            this.hsReplayGroupBox.Controls.Add(this.winnerLabel);
-            this.hsReplayGroupBox.Controls.Add(this.loserTitleLabel);
-            this.hsReplayGroupBox.Controls.Add(this.winnerTitleLabel);
             this.hsReplayGroupBox.Location = new System.Drawing.Point(12, 235);
             this.hsReplayGroupBox.Name = "hsReplayGroupBox";
             this.hsReplayGroupBox.Size = new System.Drawing.Size(347, 141);
@@ -258,16 +213,28 @@
             this.fetchTournamentButton.UseVisualStyleBackColor = true;
             this.fetchTournamentButton.Click += new System.EventHandler(this.fetchTournamentButton_Click);
             // 
+            // debugCheckBox
+            // 
+            this.debugCheckBox.AutoSize = true;
+            this.debugCheckBox.Location = new System.Drawing.Point(679, 8);
+            this.debugCheckBox.Name = "debugCheckBox";
+            this.debugCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.debugCheckBox.TabIndex = 1000;
+            this.debugCheckBox.Text = "Enable Debug Logging";
+            this.debugCheckBox.UseVisualStyleBackColor = true;
+            this.debugCheckBox.CheckedChanged += new System.EventHandler(this.DebugCheckBox_CheckedChanged);
+            // 
             // hsTournamentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(696, 388);
+            this.ClientSize = new System.Drawing.Size(826, 386);
             this.Controls.Add(this.challongeGroupBox);
             this.Controls.Add(this.hsReplayGroupBox);
             this.Controls.Add(this.logLabel);
             this.Controls.Add(this.logTextBox);
+            this.Controls.Add(this.debugCheckBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "hsTournamentForm";
             this.Text = "Hearthstone Tournament Recorder";
@@ -292,10 +259,6 @@
         private System.Windows.Forms.TextBox challongeTournamentIdTextbox;
         private System.Windows.Forms.Label hsReplayIdLabel;
         private System.Windows.Forms.TextBox hsReplayIdTextbox;
-        private System.Windows.Forms.Label winnerTitleLabel;
-        private System.Windows.Forms.Label winnerLabel;
-        private System.Windows.Forms.Label loserLabel;
-        private System.Windows.Forms.Label loserTitleLabel;
         private System.Windows.Forms.TextBox logTextBox;
         private System.Windows.Forms.Label logLabel;
         private System.Windows.Forms.GroupBox hsReplayGroupBox;
@@ -303,6 +266,7 @@
         private System.Windows.Forms.Button fetchTournamentButton;
         private System.Windows.Forms.Label activeTournamentLabel;
         private System.Windows.Forms.Label activeTournamentTitleLabel;
+        private System.Windows.Forms.CheckBox debugCheckBox;
     }
 }
 

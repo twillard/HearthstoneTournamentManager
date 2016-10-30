@@ -12,61 +12,21 @@ namespace HSTournament
 {
     public partial class hsTournamentForm : Form
     {
-        ChallongeTournament m_tournament;
+        TournamentController m_controller;
         Util.Logger m_logger;
 
         public hsTournamentForm()
         {
             InitializeComponent();
             m_logger = new Util.Logger(this.logTextBox);
+            m_controller = new TournamentController(this.m_logger);
 
-            this.winnerLabel.Text = "";
-            this.loserLabel.Text = "";
             this.activeTournamentLabel.Text = "";
         }
 
         private void processMatchButton_Click(object sender, EventArgs e)
         {
-            this.winnerLabel.Text = "";
-            this.loserLabel.Text = "";
-
-            m_logger.Log("BEGIN: Processing match.");
-
-            HSReplayMatch hsMatch = new HSReplayMatch(
-                this.hsReplayIdTextbox.Text,
-                m_logger);
-
-            if (!hsMatch.Valid())
-            {
-                return;
-            }
-
-            this.winnerLabel.Text = hsMatch.GetWinner();
-            this.loserLabel.Text = hsMatch.GetLoser();
-
-            m_logger.Log("DONE: Match Processed.");
-
-            m_logger.Log("BEGIN: Updating winner.");
-
-            ChallongeMatch cMatch =
-               m_tournament.GetOpenMatchByPlayers(hsMatch.GetWinner(), hsMatch.GetLoser());
-
-            if (cMatch == null)
-            {
-                m_logger.Log("ERROR: Could not find open match for players.");
-                return;
-            }
-
-            cMatch.SetWinner(hsMatch.GetWinner());
-            
-            // Re-fetch the tournament to keep it updated
-            m_tournament = new ChallongeTournament(
-                this.challongeUsernameTextbox.Text,
-                this.challongeApiKeyTextbox.Text,
-                this.challongeTournamentIdTextbox.Text,
-                m_logger);
-
-            m_logger.Log("DONE: Updating winner.");
+            m_controller.ProcessMatches(this.hsReplayIdTextbox.Text);
         }
 
         private void fetchTournamentButton_Click(object sender, EventArgs e)
@@ -74,29 +34,21 @@ namespace HSTournament
             this.hsReplayIdTextbox.Enabled = false;
             this.processMatchButton.Enabled = false;
             this.activeTournamentLabel.Text = "";
-            this.winnerLabel.Text = "";
-            this.loserLabel.Text = "";
 
-            m_logger.Log("BEGIN: Fetching tournament.");
-
-            ChallongeTournament tournament = new ChallongeTournament(
+            bool valid = m_controller.SetupTournament(
                 this.challongeUsernameTextbox.Text,
                 this.challongeApiKeyTextbox.Text,
-                this.challongeTournamentIdTextbox.Text,
-                m_logger);
+                this.challongeTournamentIdTextbox.Text);
 
-            if (!tournament.Valid())
+            if (!valid)
             {
                 return;
             }
 
-            this.activeTournamentLabel.Text = tournament.GetName();
+            this.activeTournamentLabel.Text = m_controller.GetTournamentName();
 
             this.hsReplayIdTextbox.Enabled = true;
             this.processMatchButton.Enabled = true;
-            m_logger.Log("DONE: Tournament fetched.");
-
-            m_tournament = tournament;
         }
 
         private void hsTournamentForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -105,6 +57,11 @@ namespace HSTournament
             Properties.Settings.Default.ChallongeAPIKey = this.challongeApiKeyTextbox.Text;
             Properties.Settings.Default.ChallongeTournamentId = this.challongeTournamentIdTextbox.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void DebugCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            m_logger.SetDebugEnabled(this.debugCheckBox.CheckState == CheckState.Checked);
         }
     }
 }

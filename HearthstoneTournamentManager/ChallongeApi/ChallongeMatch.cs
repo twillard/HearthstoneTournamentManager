@@ -33,6 +33,11 @@ public class ChallongeMatch
         m_player2 = player2;
     }
 
+    public int GetMatchId()
+    {
+        return m_match.Id;
+    }
+
     public void SetWinner(string winnerName)
     {
         string uri;
@@ -59,7 +64,7 @@ public class ChallongeMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("ERROR: " + e.Message);
+            m_logger.LogError(e.Message);
             Console.WriteLine(e.Message);
         }
     }
@@ -83,7 +88,7 @@ public class ChallongeMatch
             scores,
             winnerId);
 
-        m_logger.Log(UrlRequest);
+        m_logger.LogDebug(UrlRequest);
         return (UrlRequest);
     }
 
@@ -113,7 +118,7 @@ public class ChallongeMatch
         }
         catch (Exception e)
         {
-            m_logger.Log("HTTP ERROR: " + e.Message);
+            m_logger.LogError("HTTP failure: " + e.Message);
             Console.WriteLine(e.Message);
             return null;
         }

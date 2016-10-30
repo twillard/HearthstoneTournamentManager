@@ -79,6 +79,7 @@
     <Compile Include="ChallongeApi\ChallongeSchema.cs" />
     <Compile Include="ChallongeApi\ChallongeMatch.cs" />
     <Compile Include="ChallongeApi\ChallongeTournament.cs" />
+    <Compile Include="TournamentController\TournamentController.cs" />
     <Compile Include="Util\HTTPBasicAuth.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="hsTournamentForm.cs">
